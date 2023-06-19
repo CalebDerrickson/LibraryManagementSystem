@@ -15,7 +15,7 @@ Library::~Library() {
 }
 
 
-void Library::print() {
+void Library::printLibrary() {
 
 	//checks first if the library hashmap is empty
 	if (_libraryMap.empty()) {
@@ -88,6 +88,24 @@ void Library::insertBook(std::string bookName) {
 
 }
 
+void Library::removeBook(std::string bookName){
+
+	Book* book = _libraryMap.find(bookName)->second.first;
+
+	if(book == nullptr){
+		
+		std::cout<<"Book "<< bookName <<" was not found in the library.\n";
+		return;
+	}
+
+	std::cout<<"Deleting book "<<bookName<<".\n";
+
+	//hopefully no memory leak
+	delete _libraryMap.find(bookName)->second.first;
+	delete book;
+	_libraryMap.erase(bookName);
+
+}
 
 bool Library::checkBookAvailability(std::string bookName) {
 
@@ -120,5 +138,31 @@ void Library::checkoutBook(std::string bookName) {
 
 	//decrements the number of available books
 	_libraryMap.find(bookName)->second.second--;
+
+}
+
+void Library::printBookProperties(std::string bookName){
+
+	Book* book = _libraryMap.find(bookName)->second.first;
+
+	if(book == nullptr){
+		std::cout<< "Book "<< bookName <<" was not found in the library.\n";
+		return;
+	}
+
+	int bookAvailable = _libraryMap.find(bookName)->second.second;
+
+	std::cout<<"~~BOOK PROPERTIES~~\n";
+
+	std::cout<<"Title : "<< book->getName()<<'\n';
+	std::cout<<"Author Name : " <<book->getAuthorName()<<'\n';
+	std::cout<<"Genre : "<<book->getGenre()<<'\n';
+	std::cout<<"Pages : "<<book->getNumPages()<<'\n';
+	std::cout<<"Year Published : "<<book->getYearPublished()<<'\n';
+	
+	std::cout<<'\n';
+	std::cout<<"Number Available : " <<bookAvailable<<'\n';
+
+
 
 }
