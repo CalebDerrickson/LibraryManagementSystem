@@ -15,7 +15,7 @@ Library::~Library() {
 }
 
 
-void Library::printLibrary() {
+int Library::printLibrary() {
 
 	//checks first if the library hashmap is empty
 	if (_libraryMap.empty()) {
@@ -55,10 +55,11 @@ void Library::printLibrary() {
 
 	std::cout << "\n******************************************\n";
 
-	return;
+	return 0;
 }
 
-void Library::insertBook(std::string bookName) {
+
+int Library::insertBook(std::string bookName) {
 
 	if (checkBookAvailability(bookName)) {
 		
@@ -84,11 +85,11 @@ void Library::insertBook(std::string bookName) {
 	}
 
 
-	
+	return 0;
 
 }
 
-void Library::removeBook(std::string bookName){
+int Library::removeBook(std::string bookName){
 
 	Book* book = _libraryMap.find(bookName)->second.first;
 
@@ -105,9 +106,10 @@ void Library::removeBook(std::string bookName){
 	delete book;
 	_libraryMap.erase(bookName);
 
+	return 0;
 }
 
-bool Library::checkBookAvailability(std::string bookName) {
+int Library::checkBookAvailability(std::string bookName) {
 
 	int num = _libraryMap.find(bookName)->second.second;
 
@@ -115,19 +117,19 @@ bool Library::checkBookAvailability(std::string bookName) {
 	//more options other can be added
 	if ( num > 0 ) {
 		//std::cout << "Book " << bookName<< " is available!\n";
-		return true;
+		return 1;
 	}
 	else if ( num == 0 ) {
 		//std::cout << "Book " << bookName << "is not available!\n";
-		return false;
+		return 0;
 	}
 	else {
 		//std::cout << "Book is in Limbo...\n";
-		return false;
+		return -1;
 	}
 }
 
-void Library::checkoutBook(std::string bookName) {
+int Library::checkoutBook(std::string bookName) {
 
 	if (!checkBookAvailability(bookName)) {
 		std::cout << "Book " << bookName << " is not available!";
@@ -138,10 +140,11 @@ void Library::checkoutBook(std::string bookName) {
 
 	//decrements the number of available books
 	_libraryMap.find(bookName)->second.second--;
-
+	
+	return 0;
 }
 
-void Library::printBookProperties(std::string bookName){
+int Library::printBookProperties(std::string bookName){
 
 	Book* book = _libraryMap.find(bookName)->second.first;
 
@@ -164,5 +167,5 @@ void Library::printBookProperties(std::string bookName){
 	std::cout<<"Number Available : " <<bookAvailable<<'\n';
 
 
-
+	return 0;
 }
