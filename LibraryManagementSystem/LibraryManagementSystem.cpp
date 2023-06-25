@@ -50,8 +50,12 @@ develop practical applications and work with real-world scenarios.
 */
 
 #include <iostream>
+#include "MainManager.h"
 
 int main()
 {
     std::cout << "Hello World!\n";
+    MainManager mainManager;
+    mainManager.run();
+    return 0;
 }

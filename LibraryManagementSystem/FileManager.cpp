@@ -13,24 +13,30 @@ void FileManager::readFile(std::string fileName){
 
     _inFile.open(fileName);
 
+
+
     if(!_inFile.is_open()){
         std::cout<<" File "<< fileName <<" failed to open!\n";
         return;
     }
 
-    while(std::getline(_inFile, _line)){
+    std::string line;
+    std::string value;
+    std::vector<std::string> buffer;
 
-        _buffer.clear();
+    while(std::getline(_inFile, line)){
 
-        std::stringstream str(_line);
+        buffer.clear();
 
-        while(std::getline(str, _value, ';')){
-            _buffer.push_back(_value);
+        std::stringstream str(line);
+
+        while(std::getline(str, value, ';')){
+            buffer.push_back(value);
         }
-        _bookContents.push_back(_buffer);
+        _bookContents.push_back(buffer);
         
     }
 
-    std::cout<< "File "<< fileName<< "has been successfully read. Closing "<< fileName <<"...\n";
+    std::cout<< "File "<< fileName << "has been successfully read. Closing "<< fileName <<"...\n";
     _inFile.close();
 }
