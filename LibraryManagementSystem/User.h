@@ -12,10 +12,11 @@ public:
 
     User();
     User(std::string name);
-    User(int userID, std::string name, std::string email, std::string phoneNumber);
+    User(std::string userID, std::string name, std::string email, std::string phoneNumber);
     ~User();
 
     //setters
+    void setID(std::string userID) { _userID = _userID; }
     void setName(std::string name){_name = name;}
     void setEmail(std::string email){_email = email;}
     void setPhoneNumber(std::string phoneNumber){_phoneNumber = phoneNumber;}
@@ -25,11 +26,14 @@ public:
     std::string getName() {return _name;}
     std::string getEmail() {return _email;}
     std::string getPhoneNumber() {return _phoneNumber;}
-    int getID() { return _userID; }
+    std::string getPassword() { return _password; }
+    std::vector<Book*> getBookVec() { return _booksRented; }
+
+    std::string getID() { return _userID; }
 
 private:
 
-    int _userID;
+    std::string _userID;
     std::string _name;
     std::string _email;
     std::string _phoneNumber;

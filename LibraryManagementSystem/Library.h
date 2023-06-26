@@ -11,9 +11,10 @@ public:
 	Library();
 	~Library();
 
+	int init();
+
 	//prints all books in the library, denotes availability
 	int printLibrary();
-
 
 	//Inserts a book into the library
 	int insertBook(std::string bookName);

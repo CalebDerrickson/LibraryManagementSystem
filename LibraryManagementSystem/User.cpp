@@ -11,7 +11,7 @@ User::User(std::string name) :
 
 }
 
-User::User(int userID, std::string name, std::string email, std::string phoneNumber) : 
+User::User(std::string userID, std::string name, std::string email, std::string phoneNumber) : 
 	_userID(userID), _name(name),
 	_email(email), _phoneNumber(phoneNumber),
 	_booksRented({})

@@ -4,24 +4,19 @@
 #include <vector>
 #include <sstream>
 
-class FileManager{
-    public:
+class FileManager {
+public:
 
-        FileManager();
-        ~FileManager();
+    FileManager();
+    ~FileManager();
 
 
-        void readFile(std::string fileName);
-    private:
+    void readFile(std::string fileName);
 
-        std::ifstream _inFile;        
+    std::vector<std::vector<std::string>> getContents() { return _contentsVector; }
 
-        
+private:
 
-        
-        std::vector<std::vector<std::string>> _bookContents;
-        //just read in for now
-        //std::ofstream _outFile;
+    std::vector<std::vector<std::string>> _contentsVector;
+
 };
-
-

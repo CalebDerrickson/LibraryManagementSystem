@@ -1,4 +1,6 @@
 #include "Library.h"
+#include "FileManager.h"
+
 #include <iostream>
 
 Library::Library() {
@@ -12,6 +14,27 @@ Library::~Library() {
 	for (it = _libraryMap.begin(); it != _libraryMap.end();) {
 		delete it->second.first;
 	}
+}
+
+
+int Library::init() {
+
+
+	std::cout << "Loading in books...";
+
+	FileManager fileManager;
+	fileManager.readFile("Books.txt");
+	std::vector<std::vector<std::string>> userContents = fileManager.getContents();
+
+	for (int i = 0; i < userContents.size(); i++) {
+
+		Book* newBook = new Book(userContents[i][0], userContents[i][1], userContents[i][2], userContents[i][3], userContents[i][4]);
+		_libraryMap.emplace(newBook->getName(), std::make_pair(userContents[i][5], newBook));
+	}
+
+	std::cout << "successful.";
+	return 0;
+
 }
 
 
